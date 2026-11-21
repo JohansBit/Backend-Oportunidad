@@ -14,7 +14,7 @@ public class UsuarioService {
     private final UsuarioRepository usuarioRepository;
 
     public UsuarioModel registrarUsuario(UsuarioModel usuario){
-        if(usuarioRepository.existByCorreo(usuario.getCorreo())){
+        if(usuarioRepository.existsByCorreo(usuario.getCorreo())){
             throw new IllegalArgumentException("El correo ya esta registrado");
         }
         usuario.setRol("EJECUTIVO");
@@ -36,7 +36,7 @@ public class UsuarioService {
     public UsuarioModel actualizarRol(Long usuarioObjetivoId, String nuevoRol, Long adminId){
         UsuarioModel solicitante = usuarioRepository.findById(adminId)
                 .orElseThrow(()-> new IllegalArgumentException("Usuario solicitante no encontrado"));
-        if(!solicitante.puedeGestionar()){
+        if(!solicitante.esAdmin()){
             throw new SecurityException("Solo un SUPERVISOR puede modificar roles");
         }
         UsuarioModel objetivo = usuarioRepository.findById(usuarioObjetivoId)
