@@ -36,7 +36,7 @@ public class OportunidadModel {
     @Column(length = 1000)
     private String observaciones;
 
-    private Long creadoporId;
+    private Long creadoPorId;
     private Long responsableId;
     private String responsableNombre;
 

@@ -30,8 +30,8 @@ public class OportunidadService {
         }
 
 
-        if (oportunidad.getResponsableId() == null && oportunidad.getCreadoporId() != null) {
-            usuarioService.obtenerPorId(oportunidad.getCreadoporId()).ifPresent(creador -> {
+        if (oportunidad.getResponsableId() == null && oportunidad.getCreadoPorId() != null) {
+            usuarioService.obtenerPorId(oportunidad.getCreadoPorId()).ifPresent(creador -> {
                 oportunidad.setResponsableId(creador.getId());
                 oportunidad.setResponsableNombre(creador.getNombre());
             });
